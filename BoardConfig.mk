@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2020 The Android Open Source Project
+# Credit to afaneh92 @ GitHub
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +15,15 @@
 # limitations under the License.
 #
 
+DEVICE_PATH := device/samsung/a32
+
+# For building with minimal manifest
+ALLOW_MISSING_DEPENDENCIES := true
+
 # Bootloader
 BOARD_VENDOR := samsung
-TARGET_SOC := k6853v1_64_titan
-TARGET_BOOTLOADER_BOARD_NAME := mt6853
+TARGET_SOC := k6769tv1_64_titan
+TARGET_BOOTLOADER_BOARD_NAME := mt6768
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_USES_UEFI := true
@@ -50,13 +56,13 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Platform
-TARGET_BOARD_PLATFORM := mt6853
+TARGET_BOARD_PLATFORM := mt6768
 TARGET_BOARD_PLATFORM_GPU := mali-g57
 
 # Kernel
-TARGET_PREBUILT_KERNEL := device/samsung/a32x/prebuilt/Image.gz
-TARGET_PREBUILT_DTB := device/samsung/a32x/prebuilt/dtb
-BOARD_PREBUILT_DTBOIMAGE := device/samsung/a32x/prebuilt/recoverydtbo
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 #BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_KERNEL_ARCH := arm64
@@ -72,11 +78,19 @@ BOARD_RAMDISK_OFFSET := 0x07c08000
 BOARD_KERNEL_SECOND_OFFSET := 0xbff88000
 BOARD_KERNEL_TAGS_OFFSET := 0x0bc08000
 BOARD_DTB_OFFSET := 0x0bc08000
-BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) 
-BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --second_offset $(BOARD_KERNEL_SECOND_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION) --pagesize $(BOARD_KERNEL_PAGESIZE) --board "SRPTK17B004"
-BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB) --dtb_offset $(BOARD_DTB_OFFSET)
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/a32x/bootimg.mk
+BOARD_MKBOOTIMG_ARGS := \
+	--kernel_offset $(BOARD_KERNEL_OFFSET) \
+	--ramdisk_offset $(BOARD_RAMDISK_OFFSET) \
+	--tags_offset $(BOARD_KERNEL_TAGS_OFFSET) \
+	--second_offset $(BOARD_KERNEL_SECOND_OFFSET) \
+	--header_version $(BOARD_BOOT_HEADER_VERSION) \
+	--pagesize $(BOARD_KERNEL_PAGESIZE) \
+	--board "SRPUB24A003" \
+	--dtb $(TARGET_PREBUILT_DTB) \
+	--dtb_offset $(BOARD_DTB_OFFSET) \
+	--recovery_dtbo $(BOARD_PREBUILT_DTBOIMAGE)
+
+BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/bootimg.mk
 
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -122,7 +136,7 @@ TW_INCLUDE_FBE_METADATA_DECRYPT := false
 BOARD_USES_METADATA_PARTITION := true
 
 # TWRP specific build flags
-TW_DEVICE_VERSION := 4_afaneh92
+#TW_DEVICE_VERSION := 4_afaneh92
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
