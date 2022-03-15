@@ -12,4 +12,5 @@ make recoveryimage
 Based on:
 > https://github.com/mohammad92/android_device_samsung_a32x
 
-Current version: A325FXXU1AUC2
+Current version:
+> A325FXXU2AUJ4/XXV
