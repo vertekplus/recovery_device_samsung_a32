@@ -34,5 +34,5 @@ odm		/odm		ext4							wait,logical,first_stage_mount
 /sspm_1		emmc		/dev/block/platform/bootdevice/by-name/sspm_1	
 
 # Removable storage
-/external_sd	vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0		flags=storage;wipeingui;removable
+/external_sd	auto		/dev/block/mmcblk1p1	/dev/block/mmcblk1		flags=storage;wipeingui;removable;display="External SDcard"
 /usb-otg	auto		/dev/block/sdf1		/dev/block/sdf			flags=display="USB-OTG";storage;wipeingui;removable

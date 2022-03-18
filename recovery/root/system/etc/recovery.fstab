@@ -23,7 +23,7 @@ odm		/odm		ext4	ro,barrier=1			wait,logical,first_stage_mount
 /dev/block/platform/bootdevice/by-name/misc	/misc		emmc	defaults		recoveryonly
 /dev/block/platform/bootdevice/by-name/metadata	/metadata	ext4	defaults		wait,first_stage_mount
 # external SD card
-#/dev/block/mmcblk1p1				/sdcard		vfat	defaults		recoveryonly
+#/dev/block/mmcblk1p1				/sdcard		auto	defaults		recoveryonly
 
 # FOTA
 /dev/block/platform/bootdevice/by-name/apnhlos	/modem		emmc	defaults		recoveryonly
