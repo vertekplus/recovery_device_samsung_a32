@@ -36,3 +36,9 @@
 # Removable storage
 /external_sd	auto		/dev/block/mmcblk1p1	/dev/block/mmcblk1		flags=storage;wipeingui;removable;display="External SDcard"
 /usb-otg	auto		/dev/block/sdf1		/dev/block/sdf			flags=display="USB-OTG";storage;wipeingui;removable
+
+# Temporarily generated to workaround Magisk bug on MTK A-only
+/nvram		emmc	/dev/block/platform/bootdevice/by-name/nvram			flags=display="NVRAM";backup=1;
+/nvcfg		emmc	/dev/block/platform/bootdevice/by-name/nvcfg			flags=display="NVCFG";backup=1;subpartitionof=/nvram;
+/nvdata		emmc	/dev/block/platform/bootdevice/by-name/nvdata			flags=display="NVDATA";backup=1;subpartitionof=/nvram;
+/persistent	emmc	/dev/block/platform/bootdevice/by-name/persistent		flags=display="PERSISTENT";backup=1;subpartitionof=/nvram;

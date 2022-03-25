@@ -45,3 +45,9 @@ odm		/odm		ext4	ro,barrier=1			wait,logical,first_stage_mount
 /dev/block/platform/bootdevice/by-name/cam_vpu2	/cam_vpu2	emmc	default			recoveryonly
 /dev/block/platform/bootdevice/by-name/cam_vpu3	/cam_vpu3	emmc	default			recoveryonly
 /dev/block/platform/bootdevice/by-name/pi_img	/pi_img		emmc	default			recoveryonly
+
+# Temporarily generated to workaround Magisk bug on MTK A-only
+/dev/block/platform/bootdevice/by-name/nvram		/nvram		emmc	defaults		recoveryonly
+/dev/block/platform/bootdevice/by-name/nvdata		/nvdata		emmc	defaults		recoveryonly
+/dev/block/platform/bootdevice/by-name/nvcfg		/nvcfg		emmc	defaults		recoveryonly
+/dev/block/platform/bootdevice/by-name/persistent	/persistent	emmc	defaults		recoveryonly
