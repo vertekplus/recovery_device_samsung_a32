@@ -3,9 +3,8 @@
 ## How-to compile it:
 
 ```sh
-export ALLOW_MISSING_DEPENDENCIES=true
 . build/envsetup.sh
-lunch twrp_a32-eng
+lunch ofox_a32-eng
 make recoveryimage
 ```
 
