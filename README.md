@@ -18,4 +18,4 @@ Kernel source:
 
 Current Workaround for fixing settings ressetting after reboot.
 
-> edit bootable/recovery/twrp.cc and at line 396 (as of now) Change the bool to true. This makes the recovery load the themes twice. THis should only be for encrypted devices but since it has fixed our issue we'll use this workaround until a proper solution has been found.
+> edit bootable/recovery/twrp.cc and at line 396 (as of now) Change the bool to true. This makes the recovery load the themes twice. This should only be for encrypted devices but since it has fixed our issue we'll use this workaround until a proper solution has been found.
