@@ -35,59 +35,53 @@ if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
 fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
+	export TW_DEFAULT_LANGUAGE="en"
+	export ALLOW_MISSING_DEPENDENCIES=true
+ 	export LC_ALL="C"
 		
-		export ALLOW_MISSING_DEPENDENCIES=true
-		export LC_ALL="C.UTF-8"
-		
-		export OF_MAINTAINER="Starlix"
-		export FOX_BUILD_TYPE="Stable-A32x"
-		export FOX_VERSION="R12.1"
+	export OF_MAINTAINER="VertekPlus"
+	export FOX_BUILD_TYPE="Stable"
+	export FOX_VERSION="R12.1_1"
 
+	export OF_DISABLE_MIUI_SPECIFIC_FEATURES=1
+	#export FOX_VANILLA_BUILD=1
+	export OF_NO_SAMSUNG_SPECIAL=0
+	export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/by-name/recovery"
 
-		export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-		export OF_DISABLE_MIUI_SPECIFIC_FEATURES=1
-		export FOX_VANILLA_BUILD=1
-		export OF_NO_SAMSUNG_SPECIAL=0
-		#export FOX_REMOVE_AAPT=1
-		#export FOX_REMOVE_BASH=1
-		export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/by-name/recovery"
+	# Extra build vars
+	export FOX_USE_NANO_EDITOR=1
+ 	export FOX_DELETE_MAGISK_ADDON=1
+	export FOX_DELETE_AROMAFM=1
+	export OF_FL_PATH1="/sys/class/backlight/panel/brightness"
+	export OF_FL_PATH2=""
+	export OF_FLASHLIGHT_ENABLE=1
+	export OF_HIDE_NOTCH=0
+	export OF_CLOCK_POS=0
+	export OF_ALLOW_DISABLE_NAVBAR=0
+	export OF_USE_SYSTEM_FINGERPRINT=1
+	export OF_USE_TWRP_SAR_DETECT=1
+	export FOX_ENABLE_APP_MANAGER=1
+	export FOX_USE_BASH_SHELL=1
+	export FOX_ASH_IS_BASH=1
+	export FOX_USE_TAR_BINARY=1
+	export FOX_USE_SED_BINARY=1
+	export FOX_USE_XZ_UTILS=1
+	export OF_USE_GREEN_LED=0
+	export OF_SUPPORT_PRE_FLASH_SCRIPT=1
+ 	export FOX_BUGGED_AOSP_ARB_WORKAROUND="1546300800"; # Tuesday, January 1, 2019 12:00:00 AM GMT+00:00
 
-		# Extra build vars
-		#export FOX_REPLACE_BUSYBOX_PS=1
-		#export FOX_REPLACE_TOOLBOX_GETPROP=1
-		#export FOX_USE_TAR_BINARY=1
-		export FOX_USE_NANO_EDITOR=1
-		export OF_USE_MAGISKBOOT=1
-		export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
-		#export FOX_RESET_SETTINGS=0
-		#export FOX_DELETE_AROMAFM=1
-		export OF_FL_PATH1="/sys/class/backlight/panel/brightness"
-		export OF_FL_PATH2=""
-		export OF_FLASHLIGHT_ENABLE=1
-		export OF_HIDE_NOTCH=0
-		export OF_CLOCK_POS=0
-		export OF_ALLOW_DISABLE_NAVBAR=0
-		export OF_USE_SYSTEM_FINGERPRINT=1
-		export OF_USE_TWRP_SAR_DETECT=1
-		#export FOX_USE_UNZIP_BINARY=1
-		#export FOX_USE_XZ_UTILS=1
-		export OF_USE_GREEN_LED=0
-		export OF_SUPPORT_PRE_FLASH_SCRIPT=1
+	# maximum permissible splash image size (in kilobytes); do *NOT* increase!
+	export OF_SPLASH_MAX_SIZE=104
 
-		#R12
-		export FOX_R12=1
+	# run a process after formatting data to work-around MTP issues
+	export OF_RUN_POST_FORMAT_PROCESS=1
 
-		# maximum permissible splash image size (in kilobytes); do *NOT* increase!
-		export OF_SPLASH_MAX_SIZE=104
-
-		# run a process after formatting data to work-around MTP issues
-		export OF_RUN_POST_FORMAT_PROCESS=1
-
-		# let's see what are our build VARs
-		if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
-		  export | grep "FOX" >> $FOX_BUILD_LOG_FILE
-		  export | grep "OF_" >> $FOX_BUILD_LOG_FILE
-		  export | grep "TARGET_" >> $FOX_BUILD_LOG_FILE
-		  export | grep "TW_" >> $FOX_BUILD_LOG_FILE
+	# let's see what are our build VARs
+ 		if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
+		export | grep "FOX" >> $FOX_BUILD_LOG_FILE
+		export | grep "OF_" >> $FOX_BUILD_LOG_FILE
+		export | grep "TARGET_" >> $FOX_BUILD_LOG_FILE
+		export | grep "TW_" >> $FOX_BUILD_LOG_FILE
 		fi
 fi
+#
